@@ -11,8 +11,8 @@ require('dotenv').config(); // For loading environment variables
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 7000;
-const dbName = process.env.DB_NAME;
-const collectionName = process.env.COLLECTION_NAME;
+// const dbName = process.env.DB_NAME;
+// const collectionName = process.env.COLLECTION_NAME;
 
 app.use(cors({
     origin: "*",
@@ -51,13 +51,16 @@ app.use((req, res, next) => {
 });
 
 // Start the Express server
-app.listen(PORT, () => {
-    const localIP = process.env.NODE_ENV === 'development' 
-        ? Object.values(require('os').networkInterfaces())
-              .flat()
-              .find((address) => address.family === 'IPv4' && !address.internal)?.address || 'localhost'
-        : '0.0.0.0'; // In production, listen on all available network interfaces.
+// app.listen(PORT, () => {
+//     const localIP = process.env.NODE_ENV === 'development' 
+//         ? Object.values(require('os').networkInterfaces())
+//               .flat()
+//               .find((address) => address.family === 'IPv4' && !address.internal)?.address || 'localhost'
+//         : '0.0.0.0'; // In production, listen on all available network interfaces.
 
-    console.log(`Server is running on http://${localIP}:${PORT}`);
-    console.log('PORT : ',PORT)
-});
+//     console.log(`Server is running on http://${localIP}:${PORT}`);
+//     console.log('PORT : ',PORT)
+// });
+app.listen(PORT,()=>{
+    console.log("SERVER RUNNING ON PORT : ",PORT);
+})
