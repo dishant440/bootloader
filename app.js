@@ -52,9 +52,12 @@ app.use((req, res, next) => {
 
 // Start the Express server
 app.listen(PORT, () => {
-    const localIP = Object.values(require('os').networkInterfaces())
-        .flat()
-        .find((address) => address.family === 'IPv4' && !address.internal)?.address || 'localhost';
+    const localIP = process.env.NODE_ENV === 'development' 
+        ? Object.values(require('os').networkInterfaces())
+              .flat()
+              .find((address) => address.family === 'IPv4' && !address.internal)?.address || 'localhost'
+        : '0.0.0.0'; // In production, listen on all available network interfaces.
 
     console.log(`Server is running on http://${localIP}:${PORT}`);
+    console.log('PORT : ',PORT)
 });
