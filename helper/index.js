@@ -19,7 +19,7 @@ const generateUploadUrl = async (key, expiresIn = 300) => {
   
     try {
       const presignedUrl = await getSignedUrl(s3, command, { expiresIn });
-      console.log(`Generated presigned URL for upload: ${presignedUrl}`);
+      
       return presignedUrl;
     } catch (error) {
       console.error('Error generating upload URL:', error);
@@ -35,7 +35,7 @@ const generateUploadUrl = async (key, expiresIn = 300) => {
   
     try {
       await s3.send(deleteCommand);
-      console.log(`File successfully deleted from S3: ${key}`);
+     
     } catch (error) {
       console.error('Error deleting file from S3:', error);
       throw error;

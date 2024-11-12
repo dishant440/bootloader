@@ -39,7 +39,7 @@ const changeAdminPassword = async (req, res) => {
 
 const verifyOtpAndResetPassword = async (req, res) => {
   const { email, otp, newPassword } = req.body;
-  console.log(req.body);
+  
   
   const user = await User.findOne({ email });
 
@@ -80,8 +80,7 @@ const resetPasswordwithOTP = async (req, res) => {
         service: 'Gmail',
         auth: { user: `${process.env.EMAIL}`, pass: `${process.env.EMAIL_PASSWORD}` }
     });
-    console.log(process.env.EMAIL);
-    console.log(process.env.EMAIL_PASSWORD);
+   
     
     
 

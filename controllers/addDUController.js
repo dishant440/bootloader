@@ -87,7 +87,7 @@ const addNewDispenser = async (req,res) => {
 
 const getDUNumber = async (req, res) => {
   const { duNumber } = req.query; 
-  console.log("query",req.query);
+  
 
   try {
       
@@ -116,7 +116,7 @@ const getDUNumber = async (req, res) => {
 
   try {
     const dispenserData = await Dispenser.find({}); 
-    console.log(dispenserData);
+    
     
     res.status(200).json(dispenserData);
   } catch (error) {
@@ -130,7 +130,7 @@ const getDUNumber = async (req, res) => {
 const DU_Update = async (req, res) => {
   try {
     const serviceEngineerEmail = req.userEmail;
-    console.log("email : ", serviceEngineerEmail);
+    
     
     const response = await duMap.find({ serviceEngineerEmail: serviceEngineerEmail });
 
@@ -174,7 +174,7 @@ const DU_Update = async (req, res) => {
 
 const deleteDispenser = async (req, res) => {
   const duNumber = req.params.id;
-  console.log(duNumber);
+  
   
 
   try {

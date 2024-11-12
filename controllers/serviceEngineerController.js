@@ -46,8 +46,7 @@ const jwt = require("jsonwebtoken")
 const addServiceEngineer = async (req, res) => {
   try {
     const { name, email, phoneNo, password } = req.body;
-    console.log(req.body);
-
+ 
     // Check if required fields are provided and valid
     if (!name || typeof name !== "string") {
       return res.status(400).json({ message: "Invalid or missing name" });
@@ -104,7 +103,7 @@ const addServiceEngineer = async (req, res) => {
 const serviceEngineerLogin = async (req,res) =>{
   try {
     const {email,password} = req.body;
-    console.log(req.body);
+  
     
     const serviceEngineer = await ServiceEngineer.findOne({email});
     

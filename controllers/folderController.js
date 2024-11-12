@@ -82,9 +82,7 @@ const createFolder = async (req, res) => {
 const deleteFolder = async (req, res) => {
   try {
     const folderId = req.params.id;
-    console.log(
-      "function called"
-    );
+ 
     
 
     // Find the folder and populate its files and subfolders

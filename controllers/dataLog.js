@@ -4,7 +4,6 @@ const DataLog = require('../model/dataLogModel');
 
 const dataLog = async (req, res) => {
      
-    console.log(req.body);
     
     const {Email,Log_ID, IP_Address, Date, Time, DISPENSER_Serial_Number, DISPLAY_Serial_Number, FileName, Result, Error_Description } = req.body;
     try {
@@ -21,7 +20,7 @@ const dataLog = async (req, res) => {
             errorDescription:Error_Description,
         });        
         await newDataLog.save();
-        console.log("log generated");      
+            
         res.status(201).json({ message: 'Data log entry created successfully!'});
     } catch (error) {
         console.error(error);

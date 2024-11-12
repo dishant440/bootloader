@@ -26,12 +26,11 @@ function generateHash(fileBuffer) {
 
 
 const fileDownload = async (req, res) => {
-  console.log("file download function called");
 
 
   try {
     const fileId = req.params.fileId;
-    console.log("fileId : ",fileId);
+ 
 
     const file = await File.findById(fileId);
 
@@ -40,8 +39,6 @@ const fileDownload = async (req, res) => {
     }
     const modelNo = file.modelNo;
     const fileName = file.fileName
-    console.log("modelNo : ",modelNo);
-    console.log("fileName : ",fileName);
     
     const s3Key = `bootloader-binfiles/${modelNo}/${fileName}`;
     console.log("s3key : ",s3Key);
@@ -50,10 +47,7 @@ const fileDownload = async (req, res) => {
     // Download the file from S3
     const fileStream = await downloadFileFromS3(s3Key);
     fileStream.pipe(res);
-    console.log("hashes : ");
-    
-    console.log(file.originalFileHash);
-    console.log(file.encryptedFileHash);
+
     
     
 
@@ -66,7 +60,7 @@ const fileDownload = async (req, res) => {
 
 
     fileStream.on('end', () => {
-      console.log('File downloaded successfully from S3.');
+     
     });
 
     fileStream.on('error', (error) => {
@@ -81,7 +75,7 @@ const fileDownload = async (req, res) => {
     if (!res.headersSent) {
       res.status(500).json({message:'Error occurred while downloading the file'});
     } else {
-      console.log('Headers were already sent, cannot send error response.');
+     
       res.status(401).json({
         message:"Failed to download File"
       })
@@ -239,7 +233,7 @@ const deleteFile = async (req, res) => {
     // Update the folder to remove the reference to the deleted file
     if (file.folderId) {
       await Folder.updateOne({ _id: file.folderId }, { $pull: { files: fileId } });
-      console.log('Folder updated to remove deleted file reference.');
+      
     }
 
     // Send success response

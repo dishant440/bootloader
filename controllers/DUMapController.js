@@ -3,7 +3,7 @@ const getAllDUMaps = async (req, res) => {
   try {
 
     const duMaps = await DUMap.find().sort({dateOfCreation:-1});
-    console.log(duMaps);
+    
     const formattedDUMaps = duMaps.map(duMap => ({
       name: duMap.serviceEngineerName,
       duNumber: duMap.duNumber,
@@ -25,10 +25,10 @@ const deleteDUMap = async (req,res) => {
   
   try {
     const duMapId = req.params.id;
-      console.log("duMapId : ",req.params.id);
+    
       
     const duMapExist = await  DUMap.findByIdAndDelete(duMapId);
-    console.log(duMapExist);
+    
     if (!duMapExist) {
       return res.status(404).json({
         message: "DUMap does not exist",

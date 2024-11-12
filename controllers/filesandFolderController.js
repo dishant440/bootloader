@@ -5,7 +5,7 @@ const fetchAllContent = async(req,res) => {
     try {        
         const folders = await Folder.find({ parentFolderId: { $size: 0 } }).sort({ dateOfCreation: -1 });
         const files = await File.find({ folderId:null}).select('-content').sort({ dateOfCreation: -1 })
-        console.log(folders); 
+     
         return res.json({Folders:folders,Files:files}); 
     } catch (error) {
         console.error("Error fetching folders:", error);
