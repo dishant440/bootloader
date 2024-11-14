@@ -91,7 +91,15 @@ const deleteFolder = async (req, res) => {
     if (!folder) {
       return res.status(404).json({ message: 'Folder not found' });
     }
-
+    
+    //restrict deletion of folders that are not empty
+    if (folder.parentFolderId .length === 0) {
+      if (folder.subFolders.length !== 0 || folder.files.length !== 0) {
+        console.log("inside new if statement");
+        
+        return res.status(401).json({ message: "Not Allowed: Folder is not empty" });
+      }
+    }
     // Delete all subfolders and their files recursively
     await deleteSubfolders(folder);
 
