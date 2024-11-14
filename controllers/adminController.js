@@ -26,7 +26,6 @@ const changeAdminPassword = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        // Update the password in the database
         admin.password = hashedPassword;
         await admin.save();
 
