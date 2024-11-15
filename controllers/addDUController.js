@@ -107,7 +107,7 @@ const getDUNumber = async (req, res) => {
 
       return res.json(response); 
   } catch (err) {
-      console.error("Error fetching model number:", err); // Log the error for debugging
+      console.error("Error fetching model number:", err); 
       return res.status(500).json({ message: "Error fetching model number" });
   }
 };

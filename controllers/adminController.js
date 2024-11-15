@@ -79,10 +79,8 @@ const resetPasswordwithOTP = async (req, res) => {
         service: 'Gmail',
         auth: { user: `${process.env.EMAIL}`, pass: `${process.env.EMAIL_PASSWORD}` }
     });
+    
    
-    
-    
-
     const mailOptions = {
         to: user.email,
         from: process.env.EMAIL,
@@ -92,8 +90,10 @@ const resetPasswordwithOTP = async (req, res) => {
         Please enter this OTP within the next hour to reset your password.`
     };
 
+   
+    
     // const transporter = nodemailer.createTransport({
-    //     host: 'smtp.czarmetricsystem.com', // Replace with your company's SMTP server
+    //     host: 'smtp.office365.com', // Replace with your company's SMTP server
     //     port: 587, // Typically port 587 for TLS or 465 for SSL
     //     secure: false, // Set true for port 465 (SSL), false for other ports (TLS)
     //     auth: {
@@ -115,6 +115,8 @@ const resetPasswordwithOTP = async (req, res) => {
     // };
 
     transporter.sendMail(mailOptions, (err) => {
+        console.log(err.message);
+        
         if (err) return res.status(500).json({
             message: "Email could not be sent",
             error: err.message

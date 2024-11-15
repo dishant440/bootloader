@@ -32,8 +32,8 @@ router.delete("/deleteFolder/:id", authMiddleware, deleteFolder);
 // File Routes
 router.get("/getFile/:id", getFile);
 router.get("/fileGet/:duId", authMiddleware, fileGet);
-router.get("/fileDownload/:fileId",fileDownload);
-// router.get("/fileDownload/:fileId", authServicecMiddleware, fileDownload);
+//router.get("/fileDownload/:fileId",fileDownload);
+router.get("/fileDownload/:fileId", authServicecMiddleware, fileDownload);
 
 
 

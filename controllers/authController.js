@@ -48,7 +48,7 @@ const login = async (req,res) => {
         const existingUser = await User.findOne({email});
         if (!existingUser) {
             return res.status(401).json({
-                message:"User Does no Exist register!"
+                message:"User Does not Exist Please Register!"
             });
         }
 
